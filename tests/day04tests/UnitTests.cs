@@ -15,8 +15,8 @@ public class UnitTests
         ];
         var input = lines.Select(line => line.ToCharArray()).ToArray();
         var wordSearchSolver = new WordSearchSolver(input);
-        var occurances = wordSearchSolver.CountAppearances("XMAS");
-        occurances.ShouldBe(0);
+        var appearances = wordSearchSolver.CountAppearances("XMAS");
+        appearances.ShouldBe(0);
     }
 
     [Fact]
@@ -31,8 +31,8 @@ public class UnitTests
         ];
         var input = lines.Select(line => line.ToCharArray()).ToArray();
         var wordSearchSolver = new WordSearchSolver(input);
-        var occurances = wordSearchSolver.CountAppearances("XMAS");
-        occurances.ShouldBe(4);
+        var appearances = wordSearchSolver.CountAppearances("XMAS");
+        appearances.ShouldBe(4);
     }
 
     [Fact]
@@ -52,8 +52,8 @@ public class UnitTests
         ];
         var input = lines.Select(line => line.ToCharArray()).ToArray();
         var wordSearchSolver = new WordSearchSolver(input);
-        var occurances = wordSearchSolver.CountAppearances("XMAS");
-        occurances.ShouldBe(18);
+        var appearances = wordSearchSolver.CountAppearances("XMAS");
+        appearances.ShouldBe(18);
     }
 
     [Fact]
@@ -67,8 +67,8 @@ public class UnitTests
         ];
         var input = lines.Select(line => line.ToCharArray()).ToArray();
         var wordSearchSolver = new WordSearchSolver(input);
-        var occurances = wordSearchSolver.CountAppearances("XMAS");
-        occurances.ShouldBe(1);
+        var appearances = wordSearchSolver.CountAppearances("XMAS");
+        appearances.ShouldBe(1);
     }
 
     [Fact]
@@ -82,8 +82,8 @@ public class UnitTests
         ];
         var input = lines.Select(line => line.ToCharArray()).ToArray();
         var wordSearchSolver = new WordSearchSolver(input);
-        var occurances = wordSearchSolver.CountAppearances("XMAS");
-        occurances.ShouldBe(1);
+        var appearances = wordSearchSolver.CountAppearances("XMAS");
+        appearances.ShouldBe(1);
     }
 
     [Fact]
@@ -97,8 +97,8 @@ public class UnitTests
         ];
         var input = lines.Select(line => line.ToCharArray()).ToArray();
         var wordSearchSolver = new WordSearchSolver(input);
-        var occurances = wordSearchSolver.CountAppearances("XMAS");
-        occurances.ShouldBe(1);
+        var appearances = wordSearchSolver.CountAppearances("XMAS");
+        appearances.ShouldBe(1);
     }
 
     [Fact]
@@ -112,8 +112,8 @@ public class UnitTests
         ];
         var input = lines.Select(line => line.ToCharArray()).ToArray();
         var wordSearchSolver = new WordSearchSolver(input);
-        var occurances = wordSearchSolver.CountAppearances("XMAS");
-        occurances.ShouldBe(1);
+        var appearances = wordSearchSolver.CountAppearances("XMAS");
+        appearances.ShouldBe(1);
     }
 
     [Fact]
@@ -127,7 +127,28 @@ public class UnitTests
         ];
         var input = lines.Select(line => line.ToCharArray()).ToArray();
         var wordSearchSolver = new WordSearchSolver(input);
-        var occurances = wordSearchSolver.CountAppearances("XMAS");
-        occurances.ShouldBe(2);
+        var appearances = wordSearchSolver.CountAppearances("XMAS");
+        appearances.ShouldBe(2);
+    }
+
+    [Fact]
+    public void Test8()
+    {
+        string[] lines = [
+            "MMMSXXMASM",
+            "MSAMXMSMSA",
+            "AMXSXMAAMM",
+            "MSAMASMSMX",
+            "XMASAMXAMM",
+            "XXAMMXXAMA",
+            "SMSMSASXSS",
+            "SAXAMASAAA",
+            "MAMMMXMMMM",
+            "MXMXAXMASX",
+        ];
+        var input = lines.Select(line => line.ToCharArray()).ToArray();
+        var wordSearchSolver = new WordSearchSolver(input);
+        var appearances = wordSearchSolver.CountMasAppearances();
+        appearances.ShouldBe(9);
     }
 }

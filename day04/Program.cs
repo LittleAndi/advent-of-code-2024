@@ -1,12 +1,13 @@
-﻿
-
-var lines = File.ReadAllLines("input.txt")
+﻿var lines = File.ReadAllLines("input.txt")
     .Select(l => l.ToCharArray())
     .ToArray();
 
 var wordSearchSolver = new WordSearchSolver(lines);
-var appearances = wordSearchSolver.CountAppearances("XMAS");
-System.Console.WriteLine($"The word XMAS does appear {appearances} times");
+var appearancesXmas = wordSearchSolver.CountAppearances("XMAS");
+System.Console.WriteLine($"The word XMAS does appear {appearancesXmas} times");
+
+var appearancesMas = wordSearchSolver.CountMasAppearances();
+System.Console.WriteLine($"The X-MAS does appear {appearancesMas} times");
 
 public class WordSearchSolver
 {
@@ -47,6 +48,34 @@ public class WordSearchSolver
                 }
             }
         }
+        return appearances;
+    }
+
+    public int CountMasAppearances()
+    {
+        int appearances = 0;
+
+        for (int y = 1; y < ySize - 1; y++)
+        {
+            for (int x = 1; x < xSize - 1; x++)
+            {
+                // Skip if not an A
+                if (!mapX[y][x].Equals('A')) continue;
+
+                // forward/forward
+                if (mapX[y - 1][x - 1].Equals('M') && mapX[y + 1][x + 1].Equals('S') && mapX[y + 1][x - 1].Equals('M') && mapX[y - 1][x + 1].Equals('S')) appearances++;
+
+                // forward/backward
+                if (mapX[y - 1][x - 1].Equals('M') && mapX[y + 1][x + 1].Equals('S') && mapX[y - 1][x + 1].Equals('M') && mapX[y + 1][x - 1].Equals('S')) appearances++;
+
+                // backward/forward
+                if (mapX[y + 1][x + 1].Equals('M') && mapX[y - 1][x - 1].Equals('S') && mapX[y + 1][x - 1].Equals('M') && mapX[y - 1][x + 1].Equals('S')) appearances++;
+
+                // backward/backward
+                if (mapX[y + 1][x + 1].Equals('M') && mapX[y - 1][x - 1].Equals('S') && mapX[y - 1][x + 1].Equals('M') && mapX[y + 1][x - 1].Equals('S')) appearances++;
+            }
+        }
+
         return appearances;
     }
 
