@@ -44,4 +44,33 @@ public class UnitTests
         map.GetPositionsCoveredByGuardWalkingOut().ShouldBe(41);
     }
 
+    [Fact]
+    public void Test3()
+    {
+        // The 6 positions with extra obstacles should be
+        // 3,6
+        // 6,7
+        // 7,7
+        // 1,8
+        // 3,8
+        // 7,9
+
+        string[] lines = [
+            "....#.....",
+            ".........#",
+            "..........",
+            "..#.......",
+            ".......#..",
+            "..........",
+            ".#..^.....",
+            "........#.",
+            "#.........",
+            "......#...",
+        ];
+        var input = lines.Select(line => line.ToCharArray()).ToArray();
+        var map = new Map(input);
+        map.CountObstaclePositionsThatMakesTheGuardLoop().ShouldBe(6);
+    }
+
+
 }
