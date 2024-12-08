@@ -1,6 +1,8 @@
-﻿namespace day01tests;
+﻿using Shouldly;
 
-public class UnitTest1
+namespace day01tests;
+
+public class UnitTests
 {
     [Fact]
     public void ShouldReturnZeroDistance()

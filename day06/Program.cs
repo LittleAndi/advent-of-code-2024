@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-var lines = File.ReadAllLines("input.txt")
+﻿var lines = File.ReadAllLines("input.txt")
     .Select(l => l.ToCharArray())
     .ToArray();
 
