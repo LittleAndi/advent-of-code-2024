@@ -1,6 +1,4 @@
-﻿using System.IO.Pipelines;
-
-var lines = File.ReadAllLines("input.txt")
+﻿var lines = File.ReadAllLines("input.txt")
     .Select(line => new Evaluator(Convert.ToInt64(line.Split(':')[0]), line.Split(':')[1].TrimStart().Split(' ').Select(s => Convert.ToInt64(s)).ToArray()));
 
 var totalCalibrationResultWithTwoOperators = lines.Where(x => x.IsValidWithTwoOperators()).Sum(x => x.Result);

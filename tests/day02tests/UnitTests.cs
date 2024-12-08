@@ -2,7 +2,7 @@
 
 namespace day02tests;
 
-public class UnitTest1
+public class UnitTests
 {
     [Theory]
     [InlineData(new int[] { 7, 6, 4, 2, 1 }, true)]
