@@ -1,10 +1,20 @@
-﻿var line = File.ReadAllLines("input.txt")[0];
+﻿using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
+
+var line = File.ReadAllLines("input.txt")[0];
 
 var drive = new Drive(line);
 drive.Pack();
 var checksum = drive.FilesystemChecksum();
 
-System.Console.WriteLine($"Filesystem checksum: {checksum}");
+System.Console.WriteLine($"Filesystem checksum when moving block by block: {checksum}");
+
+// Part 2
+drive = new Drive(line);
+drive.PackEntireFiles();
+checksum = drive.FilesystemChecksum();
+
+System.Console.WriteLine($"Filesystem checksum when moving entire files: {checksum}");
 
 public class Drive
 {
@@ -72,6 +82,26 @@ public class Drive
 
             if (firstEmptySpaceIndex == lastFileIndex && firstEmptySpaceBlock > lastFileBlock) break;
             if (firstEmptySpaceIndex > lastFileIndex) break;
+        }
+    }
+
+    public void PackEntireFiles()
+    {
+        var uniqueFileIds = disk.Where(x => !x.Any(y => y < 0) && x.Any()).Select(x => x[0]).OrderDescending();
+
+        foreach (var uniqueFileId in uniqueFileIds)
+        {
+            var fileIndex = disk.FindIndex(x => x.Contains(uniqueFileId));
+            var fileLength = disk[fileIndex].Length;
+            var emptySpaceIndex = disk.FindIndex(x => x.Count(y => y == -1) >= fileLength);
+            if (emptySpaceIndex < 0) continue;
+            if (emptySpaceIndex > fileIndex) continue;
+            var emptySpaceBlockStart = Array.FindIndex(disk[emptySpaceIndex], x => x == -1);
+            for (var i = 0; i < fileLength; i++)
+            {
+                disk[emptySpaceIndex][emptySpaceBlockStart + i] = disk[fileIndex][i];
+                disk[fileIndex][i] = -1;
+            }
         }
     }
 
